@@ -1,0 +1,581 @@
+# FILE: /etc/ssh/sshd_config
+# DESCRIPTION: Defines the configuration parameters for the SSH server daemon.
+# CREATION DATE: November 3rd, 2009
+# UPDATED DATE: November 3rd, 2009
+
+
+### AcceptEnv ###
+## Environment variables to send copy from client.  Only supported in protocol 2
+## Security: Could be used to bypass restricted user environments.
+## Default: NONE
+# ===================================================================================== #
+#AcceptEnv
+# ===================================================================================== #
+
+### AddressFamily ###
+## Networking address standard to use.
+## Usage: any | inet | inet6
+## Default: any
+# ===================================================================================== #
+AddressFamily inet
+# ===================================================================================== #
+
+### AllowAgentForwarding ###
+## Allows users to forward traffic.
+## Security: Disabling doesn't improve security. Users with shell access can still
+##  install their own forwarders.
+## Default: yes
+# ===================================================================================== #
+AllowAgentForwarding yes
+# ===================================================================================== #
+
+### AllowGroups ###
+## Specify what groups have SSH access. Only group names (no GID).
+## Directives processed in following order: DenyUsers, AllowUsers, DenyGroups, AllowGroups
+## Default: <ALL GROUPS>
+# ===================================================================================== #
+#AllowGroups
+# ===================================================================================== #
+
+### AllowTcpForwarding ###
+## Specifies whether TCP forwarding is permitted.
+## Security: Disabling doesn't improve security. Users with shell access can still
+##  install their own forwarders.
+# ===================================================================================== #
+AllowTcpForwarding yes
+# ===================================================================================== #
+
+### AllowUsers ###
+## Specify what users have SSH access. Only user names (no UID).
+## The <USER>@<HOST> format can be used.
+## Directives processed in following order: DenyUsers, AllowUsers, DenyGroups, AllowGroups
+## Default: <ALL USERS>
+# ===================================================================================== #
+#AllowUsers
+# ===================================================================================== #
+
+### AuthorizedKeyFile ###
+## Path to public key files used for authentication of a given user.
+## "%h" is replaced by the home directory of the user being authenticated.
+## Default: .ssh/authorized_keys
+# ===================================================================================== #
+#AuthorizedKeyFile .ssh/authorized_keys
+# ===================================================================================== #
+
+### Banner ###
+## Protocol 2 only.
+## File containing a banner to be displayed prior to authentication.
+## Default: none
+# ===================================================================================== #
+Banner none
+# ===================================================================================== #
+
+### ChallengeResponseAuthentication ###
+## Defines if challenge-response authenticaion is allowed.
+## Authentication styles from login.conf(5) are supported.
+## Default: yes
+# ===================================================================================== #
+ChallengeResponseAuthenication yes
+# ===================================================================================== #
+
+### ChrootDirectory ###
+## Specifies path to chroot to after authentication. Must be root-owned directories.
+## "%h" is replaced by the home directory of the user.
+## "%u" is replaced by the user name of the user.
+## Directory must contain everything needed for shell access.
+## Default: NONE
+# ===================================================================================== #
+#ChrootDirectory
+# ===================================================================================== #
+
+### Ciphers ###
+## Defines what cipher(s) allowed for protocol 2 authentication. Multiple ciphers can
+##   be comma seperated.
+## Options: 3des-cbc | aes128-cbc | aes192-cbc | aes256-cbc | aes128-ctr | aes192-ctr | 
+##   aes256-ctr | arcfour128 | arcfour256 | arcfour | blowfish-cbc | cast128-cbc
+## Default: aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour
+# ===================================================================================== #
+Cipers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour
+# ===================================================================================== #
+
+### ClientAliveCountMax ###
+## Protocol 2 only.
+## Defines how many iterations of "ClientAliveInterval" to wait 
+##   before disconnecting the client.
+## Disconnect after (ClientAliveInterval * ClientAliveCountMax) seconds of inactivity.
+## Default: 3
+# ===================================================================================== #
+ClientAliveCountMax 3
+# ===================================================================================== #
+
+### ClientAliveInterval ###
+## Protocol 2 only.
+## Defines amount of time between keep alive messages when client is inactive.
+## When set to 0, no keep alive messages are sent.
+## Disconnect after (ClientAliveInterval * ClientAliveCountMax) seconds of inactivity.
+## Default: 0
+# ===================================================================================== #
+ClientAliveInterval 0
+# ===================================================================================== #
+
+### Compression ###
+## Defines when and if compression is used. When set to "delayed", compression will only be
+##   used after the client has authenticated.
+## Options: yes | delayed | no
+## Default: delayed
+# ===================================================================================== #
+Compression delayed
+# ===================================================================================== #
+
+### DenyGroups ###
+## List of group names (seperated by spaces) to deny SSH access to. Only group names (no GID).
+## Directives processed in following order: DenyUsers, AllowUsers, DenyGroups, AllowGroups
+## Default: NONE
+# ===================================================================================== #
+#DenyGroups
+# ===================================================================================== #
+
+
+### DenyUsers ###
+## List of users names (seperated by spaces) to deny SSH access to. Only user names (no UID).
+## The <USER>@<HOST> format can be used.
+## Directives processed in following order: DenyUsers, AllowUsers, DenyGroups, AllowGroups
+## Default: NONE
+# ===================================================================================== #
+#DenyUsers
+# ===================================================================================== #
+
+### ForceCommand ###
+## Command executed right after login. Command is executed using the user's shell.
+## Overrides a user's ~/.ssh/rc and pre-sent commands.
+# ===================================================================================== #
+#ForceCommand
+# ===================================================================================== #
+
+### GatewayPorts ###
+## Specifies if remote hosts are allowed to connect to ports forwarded for the client.
+## If set to "no" only the local host will be able to access the gateway port.
+## If set to "clientspecified", the client is allowed to define the address to bind to.
+## Options: yes | clientspecified | no
+## Default: no
+# ===================================================================================== #
+GatewayPorts no
+# ===================================================================================== #
+
+### GSSAPIAuthentication ###
+## Protocol 2 only.
+## Defines if GSSAPI authentication is allowed.
+## Default: no
+# ===================================================================================== #
+GSSAPIAuthentication no
+# ===================================================================================== #
+
+### GSSAPICleanupCredentials ###
+## Protocol 2 only.
+## Defines if server will destroy cached GSSAPI credentials upon logout.
+## Default: yes
+# ===================================================================================== #
+GSSAPICleanupCredentials yes
+# ===================================================================================== #
+
+### HostbasedAuthentication ###
+## Protocol 2 only.
+## Defines if (rhost OR /etc/hosts.equiv) AND public keys  should 
+##   be used for authentication.
+## Default: no
+# ===================================================================================== #
+HostbasedAuthentication no
+# ===================================================================================== #
+
+### HostbasedUsesNameFromPacketOnly ###
+## Only enable if "HostbasedAuthentication" is enabled.
+## Defines if the server will use reverse name lookup when matching hostname, instead
+##   of relying on the hostname in the packet.
+## Uses "~/.shosts", "~/.rhosts", "/etc/hosts.equiv" when matching hostnames.
+## Default: no
+# ===================================================================================== #
+HostbasedUsesNameFromPacketOnly no
+# ===================================================================================== #
+
+### HostKey ###
+## File containing the rivate key used by SSH. Possible to have multiple host key files.
+## group/world accessible keys will be refused.
+## Default (SSH v1 RSA1): /etc/ssh/ssh_host_key
+## Default (SSH v2 RSA): /etc/ssh/ssh_host_rsa_key
+## Default (SSH v2 DSA): /etc/ssh/ssh_host_dsa_key
+# ===================================================================================== #
+HostKey
+# ===================================================================================== #
+
+### IgnoreRhosts ###
+## Specifies that .rhosts and .shosts files will not be used in RhostsRSAAuthentication
+##   or HostbasedAuthentication. "/etc/hosts.equiv" and "/etc/shosts.equiv" are still used.
+## Default: yes
+# ===================================================================================== #
+IgnoreRhosts yes
+# ===================================================================================== #
+
+### IgnoreUserKnownHosts ###
+## Specifies if "~/.ssh/known_hosts" should be ignored during RhostsRSAAuthentication or
+## HostbasedAuthentication.
+## Default: no
+# ===================================================================================== #
+IgnoreUserKnownHosts no
+# ===================================================================================== #
+
+### KerberosAuthentication ###
+## Specifies if the password provided by the user for will be validated through the Kerberos
+## KDC. The server needs a Kerberos servtab.
+## Default: no
+# ===================================================================================== #
+KerberosAuthentication no
+# ===================================================================================== #
+
+### KerberosGetAFSToken ###
+## If using AFS and "KerberosAuthenticaion" is enabled, set to "yes" to fetch a AFS token before
+## accessing the user's home directory.
+## Default: no
+# ===================================================================================== #
+KerberosGetAFSToken no
+# ===================================================================================== #
+
+### KerberosOrLocalPasswd ###
+## If password authentication through Kerberos fails then the password will be validated via a
+##   local authentication mechanism (ie: /etc/passwd).
+## Default: yes
+# ===================================================================================== #
+KerberosOrLocalPasswd yes
+# ===================================================================================== #
+
+### KerberosTicketCleanup ###
+## Specifies whether to destroy the user's Kerberos ticket cache file upon logout.
+## Default: yes 
+# ===================================================================================== #
+KerberosTicketCleanup yes
+# ===================================================================================== #
+
+### KeyRegenerationInterval ###
+## Protocol 1 only. Re-generate server key automatically after the defined number of seconds.
+## If set to "0", the key is never re-generated.
+## Security: Used to prevent decrypting session keys.
+## Default: 3600
+# ===================================================================================== #
+KeyRegenerationInterval 3600
+# ===================================================================================== #
+
+### ListenAddress ###
+## The local address that sshd should listen on. Multiple "ListenAddress" directives are allowed.
+## Options: <HOSTNAME> | <IPv4_ADDRESS> | <IPv6_ADDRESS> |
+##   <HOSTNAME>:<PORT> | <IPv4_ADDRESS>:<PORT> | <IPv6_ADDRESS>:<PORT>
+## Default: ALL LOCAL ADDRESSES
+# ===================================================================================== #
+#ListenAddress
+# ===================================================================================== #
+
+### LoginGraceTime ###
+## The server will disconnect from the client if the client has not sucessfully
+## authenticated within the defined number of seconds.
+## Default: 120
+# ===================================================================================== #
+LoginGraceTime 120
+# ===================================================================================== #
+
+### LogLevel ###
+## The verbosity level that is used when logging messages.
+## "DEBUG" violates the user's privacy.
+## Options: QUIET | FATAL | ERROR | INFO | VERBOSE | DEBUG | DEBUG2 | DEBUG3
+## Default: INFO 
+# ===================================================================================== #
+LogLevel INFO
+# ===================================================================================== #
+
+### MACs ###
+## Protocol 2 only.
+## Defines the MAC (Message Authentication Code) algorithms to be used. Used for data
+## Integrity checks. Multiple arguments are comma seperated.
+## Default: hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-sha1-96,hmac-md5-96 
+# ===================================================================================== #
+MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-sha1-96,hmac-md5-96
+# ===================================================================================== #
+
+### Match ###
+## A conditional block that states if the "Match" is true, override the global configuration
+## with the defined settings.
+## 
+## Match <CONDITIONS>
+##    <OVERRIDDEN SETTINGS>
+##    ...
+##
+## CONDITION
+##   List of comma seperated filter conditions.
+##   Options: User | Group | Host <HOSTNAME> | Address <IP/IP RANGE>
+##
+## OVERRIDDEN SETTINGS
+##   Settings to override with the defined settings.
+##   Options: AllowAgentForwarding | AllowTcpForwarding | Banner | ChrootDirectory |
+##     ForceCommand | GatewayPorts | GSSAPIAuthentication | HostbasedAuthentication |
+##     KbdInteractiveAuthentication | KerberosAuthentication | MaxAuthTriesMaxSessions |
+##     PasswordAuthentication | PermitEmptyPasswords | PermitOpen | PermitRootLogin | 
+##     RhostsRSAAuthentication | RSAAuthentication | X11DisplayOffset | X11Forwarding |
+##     X11UseLocalHost
+##
+## Default: NONE
+# ===================================================================================== #
+#Match
+# ===================================================================================== #
+
+### MaxAuthTries ###
+## Defines the maximum number of authentication attempts a connection can make.
+## When the number of failed attempts reaches half of this number (MaxAuthTries / 2),
+## further attempts will be logged.
+## Default: 6
+# ===================================================================================== #
+MaxAuthTries 6
+# ===================================================================================== #
+
+### MaxSessions ###
+## Defines the maximum number of open sessions a network connection can have.
+## Default: 10
+# ===================================================================================== #
+MaxSessions 10
+# ===================================================================================== #
+
+### MaxStartups ###
+## Defines the maximum number of concurrent unauthenticated sessions. Connections will be
+## dropped until authentication succeeds or the "LoginGraceTime" timeout has been reached.
+## Default: 10
+# ===================================================================================== #
+MaxStartups 10
+# ===================================================================================== #
+
+### PasswordAuthentication ###
+## Defines if users can be authenticated via their passwords.
+## Default: yes
+# ===================================================================================== #
+PasswordAuthentication yes
+# ===================================================================================== #
+
+### PermitEmptyPasswords ###
+## Defines whether or not empty passwords are allowed to log a user in.
+## Default: no
+# ===================================================================================== #
+PermitEmptyPasswords no
+# ===================================================================================== #
+
+### PermitOpen ###
+## Specifies the destinations where forwarding is permitted. Mutiple "PermitOpen"s are allowed.
+## Options: <HOSTNAME>:<PORT> | <IPv4 ADDRESS>:<PORT> | <IPv6 ADDRESS>:<PORT>
+## Default: NONE
+# ===================================================================================== #
+PermitOpen
+# ===================================================================================== #
+
+### PermitRootLogin ###
+## Defines whether or not the 'root' user is able to login via SSH.
+## "without-password": 'root' CANNOT use password authentication.
+## "forced-command-only": Public key authentication can be used, but only if
+##   the command is specified upon authentication.
+## Options: yes | without-password | forced-command-only | no
+## Default: yes
+# ===================================================================================== #
+PermitRootLogin no
+# ===================================================================================== #
+
+### PermitTunnel ###
+## Defines whether or not device forwarding is allowed.
+## "point-to-point": layer 3
+## "ethernet": layer 2
+## "yes": enables both "point-to-point" AND "ethernet".
+## Default: no
+# ===================================================================================== #
+PermitTunnel no
+# ===================================================================================== #
+
+### PermitUserEnvironment ###
+## Defines if '~/.ssh/environment', and the "environment=..." clause in '~/.ssh/authorized_keys'
+## is processed by sshd. Enabling may permit users to bypass access restrictions.
+## Default: no
+# ===================================================================================== #
+PermitUserEnvironment no
+# ===================================================================================== #
+
+### PidFile ###
+## Defines the location of the file that contains the process id of the SSH daemon.
+## Default: /var/run/sshd.pid
+# ===================================================================================== #
+PidFile /var/run/sshd.pid
+# ===================================================================================== #
+
+### Port ###
+## Defines the port(s) that the SSH daemon listens on. Multiple "Port" options are allowed.
+## Default: 22
+# ===================================================================================== #
+Port 22
+# ===================================================================================== #
+
+### PrintLastLog ###
+## Defines whether or not the date and time of the user's last login should be printed.
+## upon login.
+## Default: yes
+# ===================================================================================== #
+PrintLastLog yes
+# ===================================================================================== #
+
+### PrintMotd ###
+## Defines whether or not to print the contents of /etc/motd upon interactive user login.
+## Default: yes
+# ===================================================================================== #
+PrintMotd yes
+# ===================================================================================== #
+
+### Protocol ###
+## Defines the SSH protocol version(s) supported.
+## Options: 1 | 2 | 2,1
+## Default: 2,1
+# ===================================================================================== #
+Protocol 2,1
+# ===================================================================================== #
+
+### PubKeyAuthentication ###
+## Protocol 2 Only.
+## Defines whether or not public key authentication is allowed.
+## Default: yes
+# ===================================================================================== #
+PubKeyAuthentication yes
+# ===================================================================================== #
+
+### RhostsRSAAuthentication ###
+## Protocol 1 Only.
+## Defines whether or not rhosts or '/etc/hosts.equiv authentication with RSA host
+## authentication is allowed.
+## Default: no
+# ===================================================================================== #
+RhostsRSAAuthentication no
+# ===================================================================================== #
+
+### RSAAuthentication ###
+## Protocol 1 Only.
+## Defines whether or not RSA authentication is allowed.
+## Default: yes
+# ===================================================================================== #
+RSAAuthentication yes
+# ===================================================================================== #
+
+### ServerKeyBits ###
+## Protocol 1 Only.
+## Defines the number of bits to use in the ephemeral server key.
+## Minimum: 512
+## Default: 1024 
+# ===================================================================================== #
+ServerKeyBits 1024
+# ===================================================================================== #
+
+### StrictModes ###
+## Defines whether or not the SSH daemon should check the permissions on the user's home
+## directory before accepting login.
+## Default: yes
+# ===================================================================================== #
+StrictModes yes
+# ===================================================================================== #
+
+### SubSystem ###
+## Protocol 2 Only.
+## Allows external systems to be used with the SSH daemon's subsystem request system.
+## "sftp-server": Enable sftp to be used.
+## Default: NONE
+# ===================================================================================== #
+SubSystem       sftp    /usr/libexec/sftp-server
+# ===================================================================================== #
+
+### SyslogFacility ###
+## Defines the standard logging facility to be used for the SSH daemon's logging messages.
+## Options: DAEMON | USER | AUTH | LOCAL0 | LOCAL1 | LOCAL2 | LOCAL3 | LOCAL4 |
+##   LOCAL5 | LOCAL6 | LOCAL7
+## Default: AUTH
+# ===================================================================================== #
+SyslogFacility AUTH
+# ===================================================================================== #
+
+### TCPKeepAlive ###
+## Defines whether or not the server should send TCP keepalive messages to the clients.
+## This avoids hanging sessions.
+## Default: yes
+# ===================================================================================== #
+TCPKeepAlive yes
+# ===================================================================================== #
+
+### UseDNS ###
+## Defines whether or not the server should look up the remote host name and check it against
+## the resolved host name, verifying the IP addresses match.
+## Default: yes
+# ===================================================================================== #
+UseDNS yes
+# ===================================================================================== #
+
+### UseLogin ###
+## Specifies whether or not 'login' should be used in interactive login sessions.
+## 'login' is not used when using remote command execution.
+## If "X11Forwarding" is enabled, "UseLogin" will be disabled due 'login' is not able
+## to handle 'xauth' cookies.
+## If "UsePrivilegeSeperation" is being used, it will be disabled after authentication.
+## Default: no
+# ===================================================================================== #
+UseLogin no
+# ===================================================================================== #
+
+### UsePAM ###
+## Defines whether or not PAM (Pluggable Authentication Mechanism) is being used.
+## If enabled, "ChallengeResponseAuthentication" and "PasswordAuthentication" can be used.
+##    In PAM, "ChallengeResponseAuthentication" OR "PasswordAuthentication" should disabled.
+## If enabled, the SSH daemon will not be able to run as a non-root user.
+## Default: no
+# ===================================================================================== #
+UsePAM no
+# ===================================================================================== #
+
+### UsePrivilegeSeparation ###
+## Defines whether or not the SSH daemon spawns a un-privileged child process for authentication
+## and then a process that of the user's privileges upon sucessful authentication.
+## Default: yes
+# ===================================================================================== #
+UsePrivilegeSeparation yes
+# ===================================================================================== #
+
+
+### X11DisplayOffset ###
+## Defines the first display number the SSH daemon can use. Prevents the SSH daemon 
+## from interfering with the real X11 sessions/servers.
+## Default: 10
+# ===================================================================================== #
+X11DisplayOffset 10
+# ===================================================================================== #
+
+### X11Forwarding ###
+## Defines whether or not X11 forwarding is permitted. When enabled, there may be a
+## security risk when the proxy display is configured to listen on the * address. It is 
+## not the default but it a possible security risk. The security risk of using X11 forwarding
+## is on the client side. Disabling X11 forwarding, does not stop the user from installing
+## their own X11 forwarding service. X11 forwarding is disabled if 'UseLogin' is enabled.
+## Default: no
+# ===================================================================================== #
+X11Forwarding no
+# ===================================================================================== #
+
+### X11UseLocalhost ###
+## Defines whether or not to bind the X11 forwarding server to the loopback address or to
+## the wildcard address.
+## "yes": SSH daemon binds to the loopback address (127.0.0.1) and sets the hostname portion
+##   of $DISPLAY to "localhost" preventing remote hosts from connecting to the proxy display.
+## "no": SSH daemon binds to the wildcard address (*). INSECURE
+## Default: yes
+# ===================================================================================== #
+X11UseLocalhost yes
+# ===================================================================================== #
+
+### XAuthLocation ###
+## Defines the full path name of the "xauth" program.
+## Default: /usr/X11R6/bin/xauth
+# ===================================================================================== #
+XAuthLocation /usr/X11R6/bin/xauth
+# ===================================================================================== #
+

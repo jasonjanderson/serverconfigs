@@ -1,0 +1,29 @@
+<VirtualHost *:80>
+  ServerName "nectro.com"
+  ServerAlias "www.nectro.com"
+
+  ServerAdmin admin@nectro.com	
+  DocumentRoot "/var/www"
+
+  <Directory "/var/www">
+    Order allow,deny
+    allow from all
+  </Directory>
+
+
+  # =================================================
+  # Logs
+  # =================================================
+  LogLevel warn
+  LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+  LogFormat "%h %l %u %t \"%r\" %>s %b" common
+  LogFormat "%{Referer}i -> %U" referer
+  LogFormat "%{User-agent}i" agent
+
+  ErrorLog /var/log/apache2/nectro_error.log
+
+  ## Heartbeat Check ##
+  SetEnvIf Request_URI "^/check\.txt$" dontlog
+  CustomLog /var/log/apache2/nectro_access.log combined env=!dontlog
+
+</VirtualHost>

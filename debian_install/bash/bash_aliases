@@ -1,0 +1,47 @@
+# enable color support of ls and also add handy aliases
+#if [ "$TERM" != "dumb" ]; then
+#    eval "`dircolors -b`"
+#    alias ls='ls --color=auto'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
+#fi
+
+
+# Alias's to modified commands
+alias ps='ps auxf'
+alias home='cd ~'
+alias pg='ps aux | grep'  #requires an argument
+alias un='tar -zxvf'
+alias mountedinfo='df -hT'
+alias ping='ping -c 10'
+alias openports='netstat -nape --inet'
+alias ns='netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail -n +2'
+alias du1='du -h --max-depth=1'
+alias df='df -ahkTP'
+alias hist='history | grep $1' #Requires one input
+alias top='htop'
+
+# Alias to multiple ls commands
+alias ls='ls --color=tty'
+alias la='ls -Alh'               # show hidden files
+alias ll='ls -alh'
+alias lx='ls -lXBh'              # sort by extension
+alias lk='ls -lSrh'              # sort by size
+alias lc='ls -lcrh'		# sort by change time  
+alias lu='ls -lurh'		# sort by access time   
+alias lr='ls -lRh'               # recursive ls
+alias lt='ls -ltrh'              # sort by date
+alias lm='ls -alh |more'         # pipe through 'more'
+
+# Alias chmod commands
+alias mx='chmod a+x'
+alias 000='chmod 000'
+alias 644='chmod 644'
+alias 755='chmod 755'
+
+alias tree='tree -Csu' # nice alternative to 'ls'
+#alias which='type -all'
+alias ..='cd ..'
+alias path='echo -e ${PATH//:/\\n}'
+alias cp='cp -r'
+alias mkdir='mkdir -p'

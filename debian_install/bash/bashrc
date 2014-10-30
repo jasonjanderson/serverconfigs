@@ -1,0 +1,86 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+function bashrc_prompt() {
+  local RESET="\[\e[0m\]"
+  
+  local BLACK="\[\e[30;1m\]"
+  local B_BLACK="\[\e[30;1m\]"
+
+  local RED="\[\e[31;1m\]"
+  local B_RED="\[\e[31;1m\]"
+
+  local GREEN="\[\e[32;1m\]" 
+  local B_GREEN="\[\e[32;1m\]" 
+
+  local YELLOW="\[\e[33;1m\]"
+  local B_YELLOW="\[\e[33;1m\]"
+
+  local DARKBLUE="\[\e[34;1m\]"
+  local B_DARKBLUE="\[\e[34;1m\]"
+
+  local PURPLE="\[\e[35;1m\]"
+  local B_PURPLE="\[\e[35;1m\]"
+
+  local LIGHTBLUE="\[\e[36;1m\]"
+  local B_LIGHTBLUE="\[\e[36;1m\]"
+
+  local WHITE="\[\e[37;1m\]"
+  local B_WHITE="\[\e[37;1m\]"
+
+  export PS1="\n$B_LIGHTBLUE-\w- $RESET$B_GREEN[ \d \@ ]$RESET\n$B_LIGHTBLUE\u@\h$RESET$B_YELLOW>$RESET$B_RED\W$RESET|> "
+}
+
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# Populate the PS1 with the format for the prompt.
+bashrc_prompt
+
+## Bash History ##
+# The number of commands bash_history should save.
+export HISTFILESIZE=3000
+
+# Don't print duplicate lines in the history.
+export HISTCONTROL=ignoredups
+
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+
+# Add user's '~/bin' directory into $PATH (if exists).
+if [ -d ~/bin ] ; then
+    PATH=~/bin:"${PATH}"
+fi
+
+
+## Alias Definitions ##
+# Define all aliases in ~/.bash_aliases, instead of adding them to .bashrc directly.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+
+## Scripts ##
+# Define custom scripting in ~/.bash_script, instead of adding them to .bashrc directly.
+if [ -f ~/.bash_script ]; then
+        . ~/.bash_script
+fi
+
+## MOTD ##
+# Define a user's custom Message Of The Day.
+if [ -f ~/.bash_motd ]; then
+        . ~/.bash_motd
+fi
+
+## Bash Completion ##
+# Enable programmable completion of common commands.
+# Does not need to be enabled if already enabled in '/etc/bash.bashrc', '/etc/profile', or '/etc/bash.bashrc'.
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+

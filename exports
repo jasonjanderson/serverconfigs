@@ -1,0 +1,177 @@
+# FILE: /etc/exports
+# DESCRIPTION: Access control list and configuration for NFS
+# CREATION DATE: December 26, 2009
+# UPDATED DATE: December 26, 2009
+
+# =============================================================================================================== #
+# SHARE    -<GLOBAL OPTIONS>    <MACHINE NAME>(<OPTIONS>) ...
+# =============================================================================================================== #
+
+
+
+# =============================================================================================================== #
+
+### MACHINE NAME ###
+# SINGLE HOST #
+#   Hostname, FQDN, or IP Address
+#   Wildcards (*) can be used in FQDNs.
+
+# NETGROUPS #
+#   @<GROUP> from /etc/netgroups
+
+# IP NETWORKS #
+#   <IP>/<NETMASK>
+#   EXAMPLE: 192.168.1.0/255.255.255.0, 192.168.1.0/24
+
+### SEC ###
+# "sec=" option can be used in <GLOBAL OPTIONS> and/or <OPTIONS>
+# The order of the "sec=" option with respect to other options does not matter.
+# Options are colon (:) seperated and are evaluated in the order they appear.
+
+# SECURITY FLAVORS #
+# sys
+#   default
+#   no crypto‐graphic security
+
+# krb5
+#   authentication only
+
+# krb5i
+#   integrity protection
+
+# krb5p
+#   privacy protection
+
+### OPTIONS ###
+# secure #
+#   Requires requests to originate on an internet port less than 1024
+#   DEFAULT: On
+
+# rw
+#   Allow both read and write requests on the NFS volume.
+#   DEFAULT: Off
+
+# async
+#   Allows the NFS server to reply to requests before any changes are committed to storage.
+#   Improves performance, but could cause data corruption if server uncleanly restarts.
+#   DEFAULT: Off
+
+# sync
+#   Replies to requests only after the changes have been committed to storage.
+#   DEFAULT: On
+
+# wdelay
+#   Allows multiple related writes to be cached temporarly and written in one operation.
+#   Improves performance when larger requests are used. Slower performance if small requests are used.
+#   Has no effect if async is also set.
+#   DEFAULT: On
+
+# no_wdelay
+#   Doesn't allow multiple related writes to be cached temporarly.
+#   Improves performance when smaller requests are used. Slower performance if larger requests are used.
+#   DEFAULT: Off
+
+# hide
+#   Causes nested shares to show up as empty directories instead of showing the contents of the share.
+#   Set on the nested share.
+#   DEFAULT: On
+
+# nohide
+#   Causes nested shares to show up in the parent mount instead of an empty directory showing up for the mount.
+#   Only works on single host exports.
+#   Set on the nested share.
+#   DEFAULT: Off
+
+# crossmnt
+#   Causes nested shares to show up in the parent mount instead of an empty directory showing up for the mount.
+#   Set on the parent share.
+
+# subtree_check
+#   Make sure that every file requested is in an exported subdirectory. When disabled (no_subtree_check),
+#   the only verification is if the file is in an exported filesystem.
+#   DEFAULT: Off
+
+# no_subtree_check
+#   Doesn't verify that every file requested is in an exported subdirectory. When enabled, the only
+#   verification is if the file is in an exported filesystem.
+#   DEFAULT: On
+
+# auth_nlm
+#   Requires authentication for NLM file locking requests. Requires a lock request to hold a credential
+#   for a user who has access to a the file.
+#   DEFAULT: On
+
+# no_auth_nlm
+#   Doesn't require authentication for NLM file locking requests. Does not require a lock request to hold
+#   a credential for access to a the file.
+#   DEFAULT: On
+
+# no_auth_nlm
+#   Authenticaion is NOT required for NLM locking requests. Normally the server requires
+#   a lock request ot hold a credential for a user who has read access on the file, wit
+#   DEFAULT: Off
+
+# no_acl
+#   Disable ACLs in filesystems that support ACLs.
+#   DEFAULT: Off
+
+# mp
+#   Only allows the directory to be exported if it has been mounted sucessfully. If no mount point is given,
+#   the export point must point to a mountpoint.
+
+# fsid=num | root | uuid
+#   The unique identifier to use for the file system being exported.
+#   num: A user defined unique number.
+#   root: Distinguished filesystem of the root.
+#   uuid: Use the UUID of the filesystem.
+#   DEFAULT: uuid
+
+# refer=<PATH>@<HOST>...
+#   Refers the client to a list of alternative locations for the filesystem.
+
+# replicas=<PATH>@<HOST>...
+#   If the client asks for alternative export points, it will be given this list of alternatives.
+
+# root_squash
+#   Requests from root(0:0) are not requested as such. They are requested using the UID/GID of 
+#   the anonymous (nobody) user.
+#   DEFAULT: On
+
+# no_root_squash
+#   Requests from root (0:0) are requested as root.
+#   DEFAULT: Off
+
+# all_squash
+#   All requests from all UIDs and GIDs are requested as the anonoymous (nobody) user.
+
+# no_all_squash
+#   All requests from all UIDs and GIDs are requested as their respective UIDs and GIDs.
+
+# anonuid=<UID>
+#   The anonoymous UID to use when squashing.
+#   DEFAULT: 65534
+
+# anongid=<GID>
+#   The anonoymous GID to use when squashing.
+#   DEFAULT: 65534
+
+# sample /etc/exports file
+/               master(rw) trusty(rw,no_root_squash)
+/projects       proj*.local.domain(rw)
+/usr            *.local.domain(ro) @trusted(rw)
+/home/joe       pc001(rw,all_squash,anonuid=150,anongid=100)
+/pub            (ro,insecure,all_squash)
+/srv/www        -sync,rw server @trusted @external(ro)
+
+The  first  line  exports  the entire filesystem to machines master and
+trusty.  In addition to write access, all uid squashing is  turned  off
+for  host trusty. The second and third entry show examples for wildcard
+hostnames and netgroups (this is the entry ‘@trusted’). The fourth line
+shows  the  entry for the PC/NFS client discussed above. Line 5 exports
+the public FTP directory to every host  in  the  world,  executing  all
+requests  under  the  nobody account. The insecure option in this entry
+also allows clients with NFS implementations that don’t use a  reserved
+port  for  NFS.   The  sixth line exports a directory read-write to the
+machine ’server’ as well as the ‘@trusted’ netgroup, and  read-only  to
+netgroup  ‘@external’, all three mounts with the ‘sync’ option enabled.
+

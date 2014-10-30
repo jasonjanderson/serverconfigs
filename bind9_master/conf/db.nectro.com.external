@@ -1,0 +1,34 @@
+; nectro.com
+$TTL    604800
+nectro.com.		IN		SOA		ns1.nectro.com.	root.nectro.com. (
+		2006020201 ; Serial
+		604800 ; Refresh
+		86400 ; Retry
+		2419200 ; Expire
+		604800	; Negative Cache TTL
+		)
+;
+		IN		NS		ns1.nectro.com.
+		IN		NS		ns2.nectro.com.
+;
+		IN		MX		10	mail.nectro.com
+;
+		IN		A		67.53.0.137
+;
+localhost.nectro.com	IN		A		127.0.0.1
+						IN		MX		10	mail.nectro.com
+;
+;
+ns1.nectro.com			IN		A		67.53.0.137
+						IN		MX		10	mail.nectro.com
+;
+ns2.nectro.com			IN		A		67.53.0.137
+						IN		MX		10	mail.nectro.com
+;
+mail.nectro.com			IN		A		67.53.0.137
+						IN		MX		10	mail.nectro.com
+;
+www.nectro.com			IN		A		67.53.0.137
+						IN		MX		10	mail.nectro.com
+;
+

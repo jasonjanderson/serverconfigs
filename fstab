@@ -1,0 +1,75 @@
+#
+## FILE: /etc/fstab
+## DESCRIPTION: Defines the block devices and filesystems that are mounted at boot.
+## CREATE DATE: 09/16/2009
+#
+
+#<DEVICE>       <MOUNT>         <FILESYSTEM>    <OPTIONS>                                   <DUMP>		<FSCK>
+
+## OS MOUNTS ##
+LABEL=/         /               ext3            rw,suid,dev,exec,auto,nouser,async		0		1
+LABEL=/boot     /boot           ext3	        rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/usr	/usr            ext3	        rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/var      /var            ext3	        rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/var/log	/var/log        ext3	        rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/opt      /opt            ext3            rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/home     /home           ext3            rw,suid,dev,exec,auto,nouser,async		0		2
+LABEL=/tmp      /tmp            ext3            rw,nosuid,nodev,noexec,auto,nouser,async	0		0
+
+
+## DATA MOUNTS ##
+
+
+## PROC ##
+proc		/proc	        proc		defaults					0		0
+
+## SWAP ##
+LABEL=swap      none	        swap		sw						0		0
+
+## SHM ##
+none            /dev/shm        tmpfs		defaults,nosuid,noexec,rw			0 		0
+
+## CD-ROM ##
+/dev/cdrom	/media/cdrom    iso9660		nouser,exec,noauto,ro				0		0			
+
+
+### OPTIONS ###
+#atime | noatime
+#  atime: Use if access/creation/modification times should be recorded on the filesystem.
+#  noatime: Use if access/creation/modification times should NOT be recorded on the filesystem. Useful if 
+#  the files are constantly being accessed and modified. (ie: database)
+
+#auto | noauto
+#  auto: Filesystem will be mounted automatically upon boot.
+#  noauto: Filesystem will NOT be mounted automatically upon boot.
+
+#dev | nodev
+#   dev: Allow special block devices to be created on the filesystem.
+#   nodev: Do NOT allow special block devices to be created on the filesystem.
+
+#exec | noexec
+#  exec: Allows binaries to be executed on the filesystem.
+#  noexec: Doesn't allow binaries to be executed on the filesystem. To improve security, use on /tmp and /var.
+
+#ro
+#  Mount as read-only.
+
+#rw
+#  Mount as read/write.
+
+#sync | async
+#  sync: Data should be written directly to the disk. (no caching)
+#  async: Data should be buffered before writing to the disk. (caching)
+
+# suid | nosuid
+#  suid: Allow the SUID bit to be set on this filesystem (allows scripts and binaries to run as 
+#        root without root permission.
+#  nosuid: Disallows use of the SUID bit on this filesystem. To improve security, use on /tmp.
+
+#user | users | nouser
+#  user: Permits any user to mount he filesystem.
+#  users: Permits users of the group "users" to mount the filesystem.
+#  nouser: Only root can mount the filesystem. 
+
+#defaults
+# ext3: rw,suid,dev,exec,auto,nouser,async

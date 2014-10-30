@@ -1,0 +1,45 @@
+$ORIGIN .
+$TTL 604800	; 1 week
+nectro.com		IN SOA	ns1.nectro.com. root.nectro.com. (
+				2009011102 ; serial
+				10         ; refresh (10 seconds)
+				200        ; retry (3 minutes 20 seconds)
+				604800     ; expire (1 week)
+				100        ; minimum (1 minute 40 seconds)
+				)
+			NS	ns1.nectro.com.
+			NS	ns2.nectro.com.
+			A	192.168.1.2
+			MX	10 mail.nectro.com.nectro.com.
+$ORIGIN nectro.com.
+admin			A	192.168.1.2
+			MX	10 mail.nectro.com
+cfdev			A	192.168.1.51
+			MX	10 mail.nectro.com
+fs			A	192.168.1.140
+			MX	10 mail.nectro.com
+fs1			A	192.168.1.141
+fs2			A	192.168.1.142
+gw			A	192.168.1.1
+			MX	10 mail.nectro.com
+lb1			A	192.168.1.110
+			MX	10 mail.nectro.com
+lb2			A	192.168.1.111
+			MX	10 mail.nectro.com
+localhost		A	127.0.0.1
+log			A	192.168.1.105
+mail			A	192.168.1.3
+			MX	10 mail.nectro.com
+ns1			A	192.168.1.101
+			MX	10 mail.nectro.com
+ns2			A	192.168.1.102
+			MX	10 mail.nectro.com
+ordev			A	192.168.1.52
+			MX	10 mail.nectro.com
+www			A	192.168.1.2
+			A	192.168.1.200
+			MX	10 mail.nectro.com
+www1			A	192.168.1.121
+			MX	10 mail.nectro.com
+www2			A	192.168.1.122
+			MX	10 mail.nectro.com

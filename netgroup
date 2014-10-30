@@ -1,0 +1,8 @@
+# FILE: /etc/netgroup
+# DESCRIPTION: Defines custom groups for use with NFS /etc/export.
+# CREATION DATE: December 26, 2009
+# UPDATED DATE: December 26, 2009
+
+# <GROUP_NAME> (<HOST_NAME>, <USER>, <NIS_DOMAIN>) ...
+
+

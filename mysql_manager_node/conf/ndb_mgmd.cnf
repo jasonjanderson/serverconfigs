@@ -1,0 +1,45 @@
+[NDBD DEFAULT] 
+NoOfReplicas=2 
+
+[MYSQLD DEFAULT] 
+
+[NDB_MGMD DEFAULT] 
+
+[TCP DEFAULT] 
+
+# Managment Server 
+[NDB_MGMD] 
+HostName=192.168.1.150
+DataDir=/var/lib/mysql-cluster
+
+# SQL Engines 
+[MYSQLD]
+HostName=192.168.1.141
+
+[MYSQLD]
+HostName=192.168.1.142
+
+[MYSQLD]
+HostName=192.168.1.143
+
+[MYSQLD]
+HostName=192.168.1.144
+
+
+# Storage Engines 
+[NDBD] 
+HostName=192.168.1.151
+DataDir= /var/lib/mysql-cluster 
+
+[NDBD]
+HostName=192.168.1.152
+DataDir=/var/lib/mysql-cluster 
+
+[NDBD]
+HostName=192.168.1.153
+DataDir= /var/lib/mysql-cluster 
+
+[NDBD]
+HostName=192.168.1.154
+DataDir=/var/lib/mysql-cluster 
+
